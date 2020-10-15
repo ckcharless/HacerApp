@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
               backgroundColor: Colors.blueGrey
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.),
+              icon: Icon(Icons.notifications_active),
               title: Text('Notification'),
               backgroundColor: Colors.blueGrey
           ),
