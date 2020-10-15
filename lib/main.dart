@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
               backgroundColor: Colors.blueGrey
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.notifications_active),
+              icon: Icon(Icons.notifications_active_rounded),
               title: Text('Notification'),
               backgroundColor: Colors.blueGrey
           ),
@@ -53,7 +53,7 @@ class _HomeState extends State<Home> {
               backgroundColor: Colors.blueGrey
           ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.supervised_user_circle_outlined),
+              icon: Icon(Icons.account_box_rounded),
               title: Text('Profile'),
               backgroundColor: Colors.blueGrey
           ),
