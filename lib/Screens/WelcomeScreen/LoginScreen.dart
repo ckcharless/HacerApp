@@ -1,86 +1,76 @@
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:hacer/Screens/AdminMenu/HomePage.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+
+import '../../routing_constant.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
 }
 
-enum LoginStatus { notSignIn, signIn }
-
 class _LoginState extends State<LoginScreen>
 {
-  LoginStatus _loginStatus = LoginStatus.notSignIn;
-  String userName, password;
-  final _key = new GlobalKey<FormState>();
+  TextEditingController usernameCtrl,passctrl;
 
-  bool _secureText = true;
+  bool loginStatus = true;
 
-  showHide() {
-    setState(() {
-      _secureText = !_secureText;
-    });
-  }
-
-  check() {
-    final form = _key.currentState;
-    if (form.validate()) {
-      form.save();
-      login();
-    }
-  }
-
-  login() async {
-    this.userName = "admin";
-    this.password = "admin";
-    final response = await http.post("http://192.168.1.5/hacer/login.php",
-        headers: {"Accept":"application/json"},
-        body: {"username": userName, "password": password});
-    final data = jsonDecode(response.body);
-    int value = data['value'];
-    String pesan = data['message'];
-    String usernameAPI = data['username'];
-    String namaAPI = data['nama'];
-    String id = data['id'];
-    if (value == 1) {
-      setState(() {
-        _loginStatus = LoginStatus.signIn;
-        savePref(value, usernameAPI, namaAPI, id);
-      });
-      print(pesan);
-    } else {
-      print(pesan);
-    }
-  }
-
-  savePref(int value, String username, String nama, String id) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      preferences.setInt("value", value);
-      preferences.setString("nama", nama);
-      preferences.setString("email", username);
-      preferences.setString("id", id);
-      preferences.commit();
-    });
-  }
-
-  var value;
-  getPref() async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
-    setState(() {
-      value = preferences.getInt("value");
-
-      _loginStatus = value == 1 ? LoginStatus.signIn : LoginStatus.notSignIn;
-    });
-  }
+  bool processing = false;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getPref();
+    usernameCtrl = new TextEditingController();
+    passctrl = new TextEditingController();
+
+  }
+
+  void changeState(){
+    if(loginStatus) {
+      loginStatus = false;
+    }
+    else loginStatus = true;
+  }
+
+  void userSignIn() async{
+    setState(() {
+      processing = true;
+    });
+    var url = "http://192.168.1.5/hacer/login.php";
+    var data = {
+      "name":usernameCtrl.text,
+      "password":passctrl.text,
+    };
+
+    var res = await http.post(url,body:data);
+
+    if(jsonDecode(res.body) == "dont have an account"){
+      Fluttertoast.showToast(msg: "dont have an account,Create an account",toastLength: Toast.LENGTH_SHORT);
+    }
+    else{
+      if(jsonDecode(res.body) == "false"){
+        Fluttertoast.showToast(msg: "incorrect password",toastLength: Toast.LENGTH_SHORT);
+      }
+      else{
+        if (res.body == '1')
+          {
+            Navigator.pushNamed(context, HomeView);
+          }
+        else
+          {
+            Alert(context: context, title: "Alert", desc: "Username or Password Invalid!").show();
+          }
+      }
+    }
+
+    setState(() {
+      processing = false;
+    });
   }
 
   @override
@@ -104,16 +94,16 @@ class _LoginState extends State<LoginScreen>
               ),
               RoundedInputField(
                   hintText: 'Username',
-                  onChanged: (e) => this.userName = e,
+                  controller: usernameCtrl
               ),
               RoundedPasswordInput(
-                onChanged: (e) => password = e,
+                controller: passctrl,
               ),
               RoundedButton(
                   text: 'LOGIN',
                   textColor: Colors.white,
                   color: Color.fromRGBO(87, 87, 255, 1),
-                  press: () {login();}
+                  press: () {userSignIn();}
               )
             ],
           ),
@@ -127,18 +117,20 @@ class RoundedInputField extends StatelessWidget {
   final String hintText;
   final IconData icon;
   final ValueChanged<String> onChanged;
+  final TextEditingController controller;
   const RoundedInputField({
     Key key,
     this.hintText,
     this.icon,
     this.onChanged,
+    this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextFormField(
-          onSaved: onChanged,
+      child: TextField(
+          controller: controller,
           decoration: InputDecoration(
               icon: Icon(Icons.person, color: Colors.black),
               hintText: hintText,
@@ -151,17 +143,20 @@ class RoundedInputField extends StatelessWidget {
 
 class RoundedPasswordInput extends StatelessWidget {
   final ValueChanged<String> onChanged;
+  final TextEditingController controller;
   const RoundedPasswordInput({
     Key key,
     this.onChanged,
+    this.controller,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
-      child: TextFormField(
+      child: TextField(
         obscureText: true,
         onChanged: onChanged,
+        controller: controller,
         decoration: InputDecoration(
           hintText: 'Password',
           icon: Icon(Icons.lock, color: Colors.black),
@@ -182,7 +177,6 @@ class TextFieldContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
