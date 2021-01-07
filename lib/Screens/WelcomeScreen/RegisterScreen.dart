@@ -14,8 +14,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String Phonenumber;
   String Adress;
 
-
-
   @override
   Widget build(BuildContext context){
     return Scaffold(

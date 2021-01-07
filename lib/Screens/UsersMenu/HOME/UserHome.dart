@@ -1,14 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'file:///D:/HACER/HacerApp/lib/Screens/UsersMenu/HOME/DetailScreen/detail_screen.dart';
+import 'package:hacer/Screens/UsersMenu/HOME/DetailScreen/detail_screen.dart';
 import 'package:hacer/constans.dart';
 import '../../../models/detailLapangan.dart';
 
 class UserHome extends StatefulWidget{
   UserHome({Key key}) : super(key: key);
-
-
 
   @override
   _UserHomeState createState() => _UserHomeState();
@@ -16,16 +14,12 @@ class UserHome extends StatefulWidget{
 
 class _UserHomeState extends State<UserHome>{
 
-
-
-
   @override
   Widget build(BuildContext context){
 Size size = MediaQuery.of(context).size;
     return SafeArea(
       child : Column(
       children: <Widget>[
-
 
         Container(
 
