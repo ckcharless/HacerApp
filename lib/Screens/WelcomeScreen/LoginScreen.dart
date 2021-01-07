@@ -42,7 +42,7 @@ class _LoginState extends State<LoginScreen>
     setState(() {
       processing = true;
     });
-    var url = "http://192.168.100.5/hacer/login.php";
+    var url = "http://192.168.0.13/hacer/login.php";
     var data = {
       "name":usernameCtrl.text,
       "password":passctrl.text,
