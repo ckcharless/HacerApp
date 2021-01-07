@@ -8,6 +8,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../routing_constant.dart';
 
+
 class LoginScreen extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -41,13 +42,14 @@ class _LoginState extends State<LoginScreen>
     setState(() {
       processing = true;
     });
-    var url = "http://192.168.1.5/hacer/login.php";
+    var url = "http://192.168.100.5/hacer/login.php";
     var data = {
       "name":usernameCtrl.text,
       "password":passctrl.text,
     };
 
     var res = await http.post(url,body:data);
+
 
     if(jsonDecode(res.body) == "dont have an account"){
       Fluttertoast.showToast(msg: "dont have an account,Create an account",toastLength: Toast.LENGTH_SHORT);
@@ -59,7 +61,7 @@ class _LoginState extends State<LoginScreen>
       else{
         if (res.body == '1')
           {
-            Navigator.pushNamed(context, HomeView);
+            Navigator.pushNamed(context, UserHomeView);
           }
         else
           {
@@ -76,6 +78,7 @@ class _LoginState extends State<LoginScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Container(
           child: Column(
@@ -93,8 +96,10 @@ class _LoginState extends State<LoginScreen>
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
               ),
               RoundedInputField(
+
                   hintText: 'Username',
-                  controller: usernameCtrl
+                  controller: usernameCtrl,
+
               ),
               RoundedPasswordInput(
                 controller: passctrl,
@@ -104,6 +109,11 @@ class _LoginState extends State<LoginScreen>
                   textColor: Colors.white,
                   color: Color.fromRGBO(87, 87, 255, 1),
                   press: () {userSignIn();}
+              ),RoundedButton(
+                  text: 'REGISTER',
+                  textColor: Colors.white,
+                  color: Color.fromRGBO(255,140,0,1),
+                  press: () {Navigator.pushNamed(context, RegisterScreenView);}
               )
             ],
           ),

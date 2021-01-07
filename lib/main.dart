@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Welcome Screen',
       theme: ThemeData(
-        primaryColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white
+        primaryColor: Colors.lightBlueAccent,
+        scaffoldBackgroundColor: Colors.lightBlueAccent
       ),
       onGenerateRoute: router.generateRoute,
       initialRoute: LoginView,
