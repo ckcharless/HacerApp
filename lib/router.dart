@@ -9,12 +9,12 @@ Route<dynamic> generateRoute(RouteSettings settings){
   switch (settings.name){
     case LoginView :
       return MaterialPageRoute(builder: (context) => LoginScreen());
-    case HomeView :
-      return MaterialPageRoute(builder: (context) => HomeScreen());
     case UserHomeView :
       return MaterialPageRoute(builder: (context) => UserHomeScreen());
     case RegisterScreenView :
       return MaterialPageRoute(builder: (context) => RegisterScreen());
+    case AdminHomeView :
+      return MaterialPageRoute(builder: (context) => HomeScreen());
     default :
       return MaterialPageRoute(builder: (context) => LoginScreen());
   }
