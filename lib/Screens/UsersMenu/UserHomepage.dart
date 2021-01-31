@@ -64,7 +64,7 @@ void _onPageChanged(int index){
               icon: Icon(Icons.home,
               color: _selectedIndex == 0 ? Colors.blue : Colors.grey,
               ),
-            title: Text('Home',
+            title: Text('Homee',
             style: TextStyle(color: _selectedIndex == 0 ? Colors.blue : Colors.grey),),
           ),
 

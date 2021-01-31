@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:hacer/Screens/AdminMenu/HomePage.dart';
+import 'package:hacer/Screens/AdminMenu/AdminPage.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import '../../routing_constant.dart';

@@ -1,16 +1,21 @@
 
 import 'package:flutter/material.dart';
 import 'package:hacer/constans.dart';
+import 'package:hacer/models/detailLapangan.dart';
 
 import 'commponents/body.dart';
 
 class DetailScreen extends StatelessWidget {
+  final Product product;
+
+  const DetailScreen({Key key, this.product}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       appBar: buildAppBar(context),
-      body: Body(),
+      body: Body(product: product,),
 
     );
   }
@@ -22,7 +27,7 @@ class DetailScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: false,
         title: Text(
-          'Back'.toUpperCase(),
+          'Backk'.toUpperCase(),
           style: Theme.of(context).textTheme.bodyText2,
         ),
 

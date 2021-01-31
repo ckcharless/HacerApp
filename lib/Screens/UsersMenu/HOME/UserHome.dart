@@ -63,7 +63,9 @@ Size size = MediaQuery.of(context).size;
             itemIndex: index,
             detailLapangan: products[index],
             press: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreen(),
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailScreen(
+                product: products[index],
+              ),
                 ),
               );
             },
@@ -149,7 +151,7 @@ class ProductCard extends StatelessWidget {
                       child: Container(
                         padding: EdgeInsets.symmetric(
                             horizontal: kDefaultPadding),
-                        height: 90,
+                        height: 91,
                         width: 180,
                         child: Image.asset(detailLapangan.image,
                           fit: BoxFit.cover,

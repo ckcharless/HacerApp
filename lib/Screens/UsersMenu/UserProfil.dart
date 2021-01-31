@@ -35,7 +35,7 @@ backgroundColor: Colors.white,
                   color: Colors.white,
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/images/logo.png'),
+                    image: AssetImage('assets/images/fotoprofil.jpg'),
                   ),
                 ),
               )
