@@ -1,5 +1,5 @@
 const String LoginView = 'login';
 const String HomeView = 'home';
-const String UserHomeView = 'Userhome';
-const String RegisterScreenView = 'Registerscreen';
+const String UserHomeView = 'UserHome';
+const String RegisterScreenView = 'RegisterScreen';
 const String AdminHomeView = 'AdminView';
