@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hacer/Screens/AdminMenu/HomePage.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'dart:developer' as developer;
+
 import '../../routing_constant.dart';
 
 
@@ -42,14 +42,13 @@ class _LoginState extends State<LoginScreen>
     setState(() {
       processing = true;
     });
-    var url = "http://10.209.147.123/hacer/login.php";
+    var url = "http://192.168.100.5/hacer/login.php";
     var data = {
       "name":usernameCtrl.text,
       "password":passctrl.text,
     };
 
     var res = await http.post(url,body:data);
-    Map<String, dynamic> login = jsonDecode(res.body);
 
 
     if(jsonDecode(res.body) == "dont have an account"){
@@ -60,17 +59,9 @@ class _LoginState extends State<LoginScreen>
         Fluttertoast.showToast(msg: "incorrect password",toastLength: Toast.LENGTH_SHORT);
       }
       else{
-        if ('${login['errNum']}' == '0')
+        if (res.body == '1')
           {
-            print(login);
-            if('${login['role']}' == 'customer')
-              {
-                Navigator.pushNamed(context, UserHomeView);
-              }
-            else if ('${login['role']}' == 'admin')
-              {
-                Navigator.pushNamed(context, AdminHomeView);
-              }
+            Navigator.pushNamed(context, UserHomeView);
           }
         else
           {
@@ -117,7 +108,7 @@ class _LoginState extends State<LoginScreen>
                   text: 'LOGIN',
                   textColor: Colors.white,
                   color: Color.fromRGBO(87, 87, 255, 1),
-                  press: () {userSignIn();}
+                  press: () {Navigator.pushNamed(context, UserHomeView);}
               ),RoundedButton(
                   text: 'REGISTER',
                   textColor: Colors.white,

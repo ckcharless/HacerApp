@@ -1,13 +1,23 @@
+
 import 'package:flutter/material.dart';
 import 'package:hacer/constans.dart';
-import 'body.dart';
+
+import 'commponents/body.dart';
 
 class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
-      appBar: AppBar(
+      appBar: buildAppBar(context),
+      body: Body(),
+
+    );
+  }
+
+
+      AppBar buildAppBar(BuildContext context){
+    return AppBar(
         backgroundColor: kBackgroundColor,
         elevation: 0,
         centerTitle: false,
@@ -16,7 +26,7 @@ class DetailScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyText2,
         ),
 
-      ),
-    );
+      );
+
   }
 }
