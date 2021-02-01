@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hacer/Screens/UsersMenu/HOME/UserHome.dart';
 import 'package:hacer/Screens/UsersMenu/UserNotif.dart';
-import 'package:hacer/Screens/UsersMenu/UserProfil.dart';
+import 'file:///D:/HACER/HacerApp/lib/Screens/UsersMenu/PROFILE/UserProfil.dart';
 import 'package:hacer/Screens/UsersMenu/UserSparing.dart';
 
 class UserHomeScreen extends StatefulWidget {
@@ -64,7 +64,7 @@ void _onPageChanged(int index){
               icon: Icon(Icons.home,
               color: _selectedIndex == 0 ? Colors.blue : Colors.grey,
               ),
-            title: Text('Homee',
+            title: Text('Home',
             style: TextStyle(color: _selectedIndex == 0 ? Colors.blue : Colors.grey),),
           ),
 
