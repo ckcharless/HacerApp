@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hacer/Screens/AdminMenu/AdminPage.dart';
-import 'package:hacer/Screens/AdminMenu/DetailScreen/detail_screen.dart';
+import 'package:hacer/Screens/AdminMenu/DetailBookingScreen/detail_screen.dart';
 import 'package:hacer/constans.dart';
 import '../../../models/detailBooking.dart';
 
@@ -84,7 +84,7 @@ class _AdminHomeState extends State<AdminHome>{
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => DetailScreen(index: index),
+        builder: (context) => DetailScreen(product: products[index]),
       ),
     );
     setState(() {
