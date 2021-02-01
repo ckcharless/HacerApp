@@ -163,6 +163,23 @@ successAlert(BuildContext context){
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
 Future EditModal(BuildContext context) async {
+  Widget continueButton = FlatButton(
+    child: Text("Ok"),
+    onPressed:  () {
+      if(_formKey.currentState.validate()){
+        // Do something like updating SharedPreferences or User Settings etc.
+        successAlert(context);
+      }
+    },
+  );
+
+  Widget resetButton = FlatButton(
+    child: Text("Ok"),
+    onPressed:  () {
+      _formKey.currentState.reset();
+    },
+  );
+
   return await showDialog(context: context,
       builder: (context){
         final TextEditingController _fieldName = TextEditingController();
@@ -200,15 +217,8 @@ Future EditModal(BuildContext context) async {
                   ],
                 )),
             actions: <Widget>[
-              TextButton(
-                child: Text('Okay'),
-                onPressed: (){
-                  if(_formKey.currentState.validate()){
-                    // Do something like updating SharedPreferences or User Settings etc.
-                    successAlert(context);
-                  }
-                },
-              ),
+              continueButton,
+              resetButton,
             ],
           );
         });

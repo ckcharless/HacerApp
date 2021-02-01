@@ -86,6 +86,35 @@ class _ManageField extends State<ManageField>{
   }
 
   Future AddFieldModal(BuildContext context) async {
+
+    Widget continueButton = FlatButton(
+      child: Text("Ok"),
+      color: Colors.lightBlueAccent,
+      textColor: Colors.white,
+      onPressed:  () {
+        if(_formKey.currentState.validate()){
+          // Do something like updating SharedPreferences or User Settings etc.
+          successAlert(context);
+        }
+      },
+    );
+
+    Widget resetButton = FlatButton(
+      child: Text("Reset"),
+      color: Colors.red,
+      onPressed:  () {
+        _formKey.currentState.reset();
+      },
+    );
+
+    Widget cancelButton = FlatButton(
+      child: Text("Cancel"),
+      color: Colors.redAccent,
+      onPressed:  () {
+        Navigator.of(context).pop();
+      },
+    );
+
     return await showDialog(context: context,
         builder: (context){
           final TextEditingController _fieldName = TextEditingController();
@@ -93,7 +122,7 @@ class _ManageField extends State<ManageField>{
           final TextEditingController _fieldDescription = TextEditingController();
           return StatefulBuilder(builder: (context,setState){
             return AlertDialog(
-              title: Text('EDIT FIELD'),
+              title: Text('ADD FIELD'),
               content: Form(
                   key: _formKey,
                   child: SingleChildScrollView(
@@ -133,14 +162,9 @@ class _ManageField extends State<ManageField>{
                   )
               ),
               actions: <Widget>[
-                TextButton(
-                  child: Text('Okay'),
-                  onPressed: (){
-                    if(_formKey.currentState.validate()){
-                      successAlert(context);
-                    }
-                  },
-                ),
+                continueButton,
+                resetButton,
+                cancelButton
               ],
             );
           });
