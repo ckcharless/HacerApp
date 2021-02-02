@@ -42,26 +42,31 @@ class _LoginState extends State<LoginScreen>
     setState(() {
       processing = true;
     });
-    var url = "http://192.168.100.5/hacer/login.php";
+    var url = "http://192.168.0.10/hacer/login.php";
     var data = {
       "name":usernameCtrl.text,
       "password":passctrl.text,
     };
 
     var res = await http.post(url,body:data);
+    Map login = jsonDecode(res.body);
+    print(login);
 
-
-    if(jsonDecode(res.body) == "dont have an account"){
+    if('${login['errNum']}' == 1){
       Fluttertoast.showToast(msg: "dont have an account,Create an account",toastLength: Toast.LENGTH_SHORT);
     }
     else{
-      if(jsonDecode(res.body) == "false"){
+      if('${login['result']}' == null){
         Fluttertoast.showToast(msg: "incorrect password",toastLength: Toast.LENGTH_SHORT);
       }
       else{
-        if (res.body == '1')
+        if ('${login['result']['role']}' == 'customer')
           {
             Navigator.pushNamed(context, UserHomeView);
+          }
+        else if ('${login['result']['role']}' == 'admin')
+          {
+            Navigator.pushNamed(context, AdminHomeView);
           }
         else
           {
@@ -108,7 +113,7 @@ class _LoginState extends State<LoginScreen>
                   text: 'LOGIN',
                   textColor: Colors.white,
                   color: Color.fromRGBO(87, 87, 255, 1),
-                  press: () {Navigator.pushNamed(context, UserHomeView);}
+                  press: () {userSignIn();}
               ),RoundedButton(
                   text: 'REGISTER',
                   textColor: Colors.white,

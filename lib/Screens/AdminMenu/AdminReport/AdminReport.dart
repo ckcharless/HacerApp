@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hacer/Screens/AdminMenu/AdminPage.dart';
-import 'package:hacer/Screens/AdminMenu/DetailScreen/detail_screen.dart';
+import 'package:hacer/Screens/AdminMenu/DetailLapanganScreen/detail_screen.dart';
 import 'package:hacer/constans.dart';
 import '../../../models/detailBooking.dart';
 

@@ -1,10 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:hacer/Screens/AdminMenu/AdminPage.dart';
-import 'package:hacer/Screens/AdminMenu/DetailScreen/detail_screen.dart';
+import 'package:hacer/Screens/AdminMenu/DetailLapanganScreen/detail_screen.dart';
 import 'package:hacer/constans.dart';
 import '../../../models/detailLapangan.dart';
+import 'package:image_picker/image_picker.dart';
+import 'dart:io';
+
+import '../../../routing_constant.dart';
+
 
 class ManageField extends StatefulWidget{
 
@@ -14,6 +18,18 @@ class ManageField extends StatefulWidget{
 
 
 class _ManageField extends State<ManageField>{
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  File _image;
+
+  _imgFromGallery() async {
+    File image = (await  ImagePicker.pickImage(
+        source: ImageSource.gallery, imageQuality: 50
+    ));
+
+    setState(() {
+      _image = image;
+    });
+  }
 
   @override
   Widget build(BuildContext context){
@@ -21,7 +37,6 @@ class _ManageField extends State<ManageField>{
     return SafeArea(
       child : Column(
         children: <Widget>[
-
           Expanded(
             child: Stack(
               children: <Widget>[
@@ -43,6 +58,16 @@ class _ManageField extends State<ManageField>{
                     },
                   ),
                 ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      AddFieldModal(context);
+                    },
+                    child: Icon(Icons.add),
+                    backgroundColor: Colors.green,
+                  ),
+                )
               ],
             ),
           ),
@@ -55,12 +80,97 @@ class _ManageField extends State<ManageField>{
     final result = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => DetailScreen(index: index,),
+        builder: (context) => DetailScreen(product: products[index]),
       ),
     );
   }
-}
 
+  Future AddFieldModal(BuildContext context) async {
+
+    Widget continueButton = FlatButton(
+      child: Text("Ok"),
+      color: Colors.lightBlueAccent,
+      textColor: Colors.white,
+      onPressed:  () {
+        if(_formKey.currentState.validate()){
+          // Do something like updating SharedPreferences or User Settings etc.
+          successAlert(context);
+        }
+      },
+    );
+
+    Widget resetButton = FlatButton(
+      child: Text("Reset"),
+      color: Colors.red,
+      onPressed:  () {
+        _formKey.currentState.reset();
+      },
+    );
+
+    Widget cancelButton = FlatButton(
+      child: Text("Cancel"),
+      color: Colors.redAccent,
+      onPressed:  () {
+        Navigator.of(context).pop();
+      },
+    );
+
+    return await showDialog(context: context,
+        builder: (context){
+          final TextEditingController _fieldName = TextEditingController();
+          final TextEditingController _fieldPrice = TextEditingController();
+          final TextEditingController _fieldDescription = TextEditingController();
+          return StatefulBuilder(builder: (context,setState){
+            return AlertDialog(
+              title: Text('ADD FIELD'),
+              content: Form(
+                  key: _formKey,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(bottom: 20.0),
+                          child: new RaisedButton(
+                            onPressed: () {_imgFromGallery();},
+                            child: new Text("Select Image"),
+                          ),
+                        ),
+                        TextFormField(
+                          controller: _fieldName,
+                          validator: (value){
+                            return value.isNotEmpty ? null : "Invalid Field";
+                          },
+                          decoration: InputDecoration(hintText: "Enter New Field Name"),
+                        ),
+                        TextFormField(
+                          controller: _fieldPrice,
+                          validator: (value){
+                            return value.isNotEmpty ? null : "Invalid Field";
+                          },
+                          decoration: InputDecoration(hintText: "Enter New Price"),
+                        ),
+                        TextFormField(
+                          controller: _fieldDescription,
+                          validator: (value){
+                            return value.isNotEmpty ? null : "Invalid Field";
+                          },
+                          decoration: InputDecoration(hintText: "Enter New Description"),
+                        ),
+                      ],
+                    )
+                  )
+              ),
+              actions: <Widget>[
+                continueButton,
+                resetButton,
+                cancelButton
+              ],
+            );
+          });
+        });
+  }
+}
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -189,4 +299,35 @@ class ProductCard extends StatelessWidget {
   }
 }
 
+successAlert(BuildContext context){
+  Widget continueButton = FlatButton(
+    child: Text("Ok"),
+    onPressed:  () {
+      Navigator.pushNamed(context, AdminHomeView);
+    },
+  );
 
+  AlertDialog alert = AlertDialog(
+    title: Text('SUCCESS!!'),
+    content: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Image.asset(
+            'assets/images/icons8-ok-480.png',
+            fit: BoxFit.cover,
+            height: 200,
+          ),
+        ]
+    ),
+    actions: [
+      continueButton,
+    ],
+  );
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
