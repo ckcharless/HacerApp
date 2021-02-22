@@ -13,7 +13,7 @@ static String routeName = '/profile';
       appBar: AppBar(
         title: Center(
           child:
-        Text("Profile"),
+        Text("Profilee"),
         ),
         backgroundColor: Colors.white60,
         automaticallyImplyLeading: false,
