@@ -113,7 +113,7 @@ class _LoginState extends State<LoginScreen>
                   text: 'LOGIN',
                   textColor: Colors.white,
                   color: Color.fromRGBO(87, 87, 255, 1),
-                  press: () {userSignIn();}
+                  press: () {Navigator.pushNamed(context, UserHomeView);}
               ),RoundedButton(
                   text: 'REGISTER',
                   textColor: Colors.white,

@@ -87,7 +87,7 @@ class _UserNotifState extends State<UserNotif> {
                               Padding(
                                 padding: const EdgeInsets.symmetric(
                                     horizontal: kDefaultPadding),
-                                child: Text("000",
+                                child: Text("asd000",
                                   style: Theme
                                       .of(context)
                                       .textTheme
