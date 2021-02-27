@@ -14,7 +14,7 @@ class Body extends StatelessWidget {
       children: <Widget>[
         Container(
           padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-          height: 380,
+          height: 460,
           decoration: BoxDecoration(
             color: kBackgroundColor,
             borderRadius: BorderRadius.only(
@@ -38,19 +38,36 @@ class Body extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 10,),
               Text("CHAMPION FUTSAL",
-                style: Theme.of(context).textTheme.headline6,
+                  style: TextStyle(height: 1.5, fontSize: 24,fontWeight: FontWeight.bold)
               ),
-              Text('HARGA : Rp 50.000 / jam'),
-              Text('WAKTU BUKA : 08:00 AM - 10:00 PM'),
-              Text('FASILITAS : WC | TEMPAT SHOLAT'),
-              FlatButton(onPressed: _launchMap, child: Text('LOCATION'),color: Colors.lightBlue,),
-
+              Text('HARGA : Rp 50.000 / jam',
+                  style: TextStyle(height: 1.5, fontSize: 18)),
+              Text('WAKTU BUKA : 08:00 AM - 10:00 PM',
+                  style: TextStyle(height: 1.5, fontSize: 18)),
+              Text('FASILITAS : WC | TEMPAT SHOLAT',
+                  style: TextStyle(height: 1.5, fontSize: 18)),
+              SizedBox(height: 12,),
+              MaterialButton(
+                onPressed: (){},
+                child: Text('LOCATION', style: TextStyle(
+                    color: Colors.blue
+                )
+                ),
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(side: BorderSide(
+                    color: Colors.blue,
+                    width: 1,
+                    style: BorderStyle.solid
+                ), borderRadius: BorderRadius.circular(50)),
+              )
             ],
           ),
         ),
 
         Container(
+          height: 60,
           margin: EdgeInsets.all(kDefaultPadding),
           padding: EdgeInsets.symmetric(
             horizontal: kDefaultPadding,
@@ -67,22 +84,7 @@ class Body extends StatelessWidget {
           ),
         ),
 
-        Container(
-          margin: EdgeInsets.all(kDefaultPadding),
-          padding: EdgeInsets.symmetric(
-            horizontal: kDefaultPadding,
-            vertical: kDefaultPadding / 2,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.orangeAccent,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Row(
-            children: <Widget>[
-              Text('BOOKING',style: TextStyle(color: Colors.white),)
-            ],
-          ),
-        ),
+
       ],
     );
   }

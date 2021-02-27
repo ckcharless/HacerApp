@@ -131,7 +131,7 @@ class ProductCard extends StatelessWidget {
                           spreadRadius: 4,
                           color: Colors.black45,
                           offset: Offset(2, 2),
-                          blurRadius: 10,
+                          blurRadius: 8,
                         )],
                       ),
                       child: Container(
