@@ -41,7 +41,7 @@ class _UserSparingState extends State<UserSparing>{
                     itemIndex: index,
                     detailBooking: products[index],
                     press: () {
-
+                      JoinSparing(context);
                     },
                   ),
                 ),
