@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hacer/Screens/UsersMenu/HOME/DetailScreen/detail_screen.dart';
 import 'package:hacer/constans.dart';
+import 'package:hacer/models/detailBooking.dart';
+
+import 'package:hacer/models/detailNotifuser.dart';
 
 class UserNotif extends StatefulWidget{
   UserNotif({Key key}) : super(key: key);
@@ -33,10 +36,13 @@ class _UserNotifState extends State<UserNotif>{
                   ),
                 ),
                 ListView.builder(
-                  itemCount: 1,
+                  itemCount: NotifUsers.length,
                   itemBuilder: (context, index) => ProductCard(
                     itemIndex: index,
-                    press: () {},
+                    detailNotifuser: NotifUsers[index],
+                    press: () {
+
+                    },
                   ),
                 ),
 
@@ -54,11 +60,11 @@ class _UserNotifState extends State<UserNotif>{
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
-    Key key, this.itemIndex, this.press,
+    Key key, this.itemIndex,this.detailNotifuser, this.press,
   }) : super(key: key);
 
   final int itemIndex;
-
+  final NotifUser detailNotifuser;
   final Function press;
 
   @override
@@ -126,7 +132,7 @@ class ProductCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: kDefaultPadding),
                               child:
-                              Text("SUCESS BOOKING !!",
+                              Text(detailNotifuser.status,
                                   style: TextStyle(height: 1, fontSize: 20)),
 
 
@@ -137,7 +143,7 @@ class ProductCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: kDefaultPadding),
                               child:
-                              Text("Champion Futsal, Kebun Jeruk, Jakarta Barat",
+                              Text(detailNotifuser.alamat,
                                   style: TextStyle(height: 1.5, fontSize: 14,fontWeight: FontWeight.bold)),
 
 
@@ -148,7 +154,7 @@ class ProductCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: kDefaultPadding),
                               child:
-                              Text("PRICE : Rp 120000,-",
+                              Text("\PRICE : Rp ${detailNotifuser.price},-",
                                   style: TextStyle(height: 1.6, fontSize: 16)),
 
 
@@ -159,7 +165,7 @@ class ProductCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: kDefaultPadding),
                               child:
-                              Text("13 FEB 2021 | 12:00-14:00",
+                              Text(detailNotifuser.date,
                                   style: TextStyle(height: 1.4, fontSize: 16)),
 
 
@@ -170,7 +176,7 @@ class ProductCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: kDefaultPadding),
                               child:
-                              Text("BOOKING CODE: 56843547",
+                              Text(detailNotifuser.bookingcode,
                                   style: TextStyle(height: 1.4, fontSize: 16)),
 
 
@@ -196,7 +202,7 @@ class ProductCard extends StatelessWidget {
                                       topRight: Radius.circular(22))
                               ),
                               child: Text(
-                                "10/2/201 (13.45)",
+                                detailNotifuser.time,
                                 style: Theme
                                     .of(context)
                                     .textTheme
