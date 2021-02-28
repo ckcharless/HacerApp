@@ -5,6 +5,8 @@ import 'package:hacer/Screens/UsersMenu/HOME/DetailScreen/detail_screen.dart';
 import 'package:hacer/constans.dart';
 import 'package:hacer/routing_constant.dart';
 
+import 'package:hacer/models/detailBooking.dart';
+
 class UserSparing extends StatefulWidget{
   UserSparing({Key key}) : super(key: key);
 
@@ -34,10 +36,13 @@ class _UserSparingState extends State<UserSparing>{
                   ),
                 ),
                 ListView.builder(
-                  itemCount: 4,
+                  itemCount: products.length,
                   itemBuilder: (context, index) => ProductCard(
                     itemIndex: index,
-                    press: () {JoinSparing(context);},
+                    detailBooking: products[index],
+                    press: () {
+
+                    },
                   ),
                 ),
 
@@ -55,11 +60,11 @@ class _UserSparingState extends State<UserSparing>{
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
-    Key key, this.itemIndex, this.press,
+    Key key, this.itemIndex,this.detailBooking, this.press,
   }) : super(key: key);
 
   final int itemIndex;
-
+  final Product detailBooking;
   final Function press;
 
   @override
@@ -128,7 +133,7 @@ class ProductCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: kDefaultPadding),
                               child:
-                              Text("CODE BOOKING : ABCDEF",
+                              Text("\CODE BOOKING : ${detailBooking.bookCode}",
                                   style: TextStyle(height: 1, fontSize: 20)),
 
 
@@ -139,7 +144,7 @@ class ProductCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: kDefaultPadding),
                               child:
-                              Text("Champion Futsal, Kebun Jeruk, Jakarta Barat",
+                              Text(detailBooking.address,
                                   style: TextStyle(height: 1.5, fontSize: 14,fontWeight: FontWeight.bold)),
 
 
@@ -150,7 +155,7 @@ class ProductCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: kDefaultPadding),
                               child:
-                              Text("TEAM A : 7 PEOPLE",
+                              Text("\TEAM A : ${detailBooking.teamA} PEOPLE",
                                   style: TextStyle(height: 1.6, fontSize: 16)),
 
 
@@ -161,7 +166,7 @@ class ProductCard extends StatelessWidget {
                               padding: const EdgeInsets.symmetric(
                                   horizontal: kDefaultPadding),
                               child:
-                              Text("DURATION : 2 HOURS",
+                              Text("\DURATION : ${detailBooking.duration} HOURS",
                                   style: TextStyle(height: 1.4, fontSize: 16)),
 
 
