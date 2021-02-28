@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hacer/Screens/WelcomeScreen/LoginScreen.dart';
 import 'package:hacer/constans.dart';
 import 'package:hacer/models/detailLapangan.dart';
+
+import 'bodyBooking/body.dart';
+import 'DetailBooking.dart';
 
 class Body extends StatelessWidget {
   final Product product;
@@ -65,25 +69,24 @@ class Body extends StatelessWidget {
             ],
           ),
         ),
+SizedBox(height: 20,),
 
         Container(
-          height: 60,
-          margin: EdgeInsets.all(kDefaultPadding),
-          padding: EdgeInsets.symmetric(
-            horizontal: kDefaultPadding,
-            vertical: kDefaultPadding / 2,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.orangeAccent,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Row(
-            children: <Widget>[
-              Text('BOOKING',style: TextStyle(color: Colors.white),)
-            ],
-          ),
-        ),
+          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        child: RoundedButton(
 
+            text: 'BOOKING',
+
+            textColor: Colors.white,
+            color: Colors.orange,
+            press: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailBooking(
+              ),
+              ),
+              );
+            },
+        ),
+        ),
 
       ],
     );
