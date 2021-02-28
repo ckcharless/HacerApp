@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hacer/routing_constant.dart';
+
 
 class Body extends StatelessWidget{
   @override
@@ -203,10 +205,7 @@ class _BookingForm extends State<BookingForm>{
                 ),
                 color: Colors.blue,
                 onPressed: (){
-                  print(email);
-                  print(name);
-                  print(Phonenumber);
-                  print(Adress);
+                  SubmitBooking(context);
                 },
               ),
             ),
@@ -215,3 +214,86 @@ class _BookingForm extends State<BookingForm>{
       ),
     );
   }}
+
+
+
+successAlert(BuildContext context){
+  Widget continueButton = FlatButton(
+    child: Text("Ok"),
+    onPressed:  () {
+      Navigator.pushNamed(context, UserHomeView);
+    },
+  );
+
+  AlertDialog alert = AlertDialog(
+    title: Text('SUCCESS!!'),
+    content: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Image.asset(
+            'assets/images/icons8-ok-480.png',
+            fit: BoxFit.cover,
+            height: 200,
+          ),
+        ]
+    ),
+    actions: [
+      continueButton,
+    ],
+  );
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+
+final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+Future SubmitBooking(BuildContext context) async {
+  Widget continueButton = FlatButton(
+    child: Text("Submit"),
+    onPressed:  () {
+      if(_formKey.currentState.validate()){
+        // Do something like updating SharedPreferences or User Settings etc.
+        successAlert(context);
+      }
+    },
+  );
+
+  Widget resetButton = FlatButton(
+    child: Text("Cancel"),
+    onPressed:  () {
+      _formKey.currentState.reset();
+    },
+  );
+
+  return await showDialog(context: context,
+      builder: (context){
+        final TextEditingController _fieldName = TextEditingController();
+        final TextEditingController _fieldPrice = TextEditingController();
+        final TextEditingController _fieldDescription = TextEditingController();
+        return StatefulBuilder(builder: (context,setState){
+          return AlertDialog(
+            title: Text('Booking lapangan'),
+            content: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('Apakah anda yaking telah mengisi form booking dengan benar ?')
+
+
+                  ],
+                )),
+            actions: <Widget>[
+              continueButton,
+              resetButton,
+            ],
+          );
+        });
+      });
+}
