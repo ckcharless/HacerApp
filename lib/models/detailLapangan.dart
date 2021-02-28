@@ -8,7 +8,7 @@ class Product{
 List<Product> products = [
   Product(
     id: 1,
-    price: 1000,
+    price: 50000,
     title: "CHAMPION FUTSAL",
     image: "assets/images/lapangan1.jpg",
     description: "Murah banget pokoknya",
@@ -18,7 +18,7 @@ List<Product> products = [
   ),
   Product(
     id: 2,
-    price: 4000,
+    price: 60000,
     title: "Champion futsal 2",
     image: "assets/images/lapangan2.jpg",
     description: "Agak mahal",
@@ -28,7 +28,7 @@ List<Product> products = [
   ),
   Product(
     id: 3,
-    price: 5000,
+    price: 70000,
     title: "Champion futsal 3",
     image: "assets/images/lapangan3.jpg",
     description: "Mahal cok",
@@ -38,7 +38,7 @@ List<Product> products = [
   ),
   Product(
     id: 4,
-    price: 8000,
+    price: 100000,
     title: "Champion futsal 4",
     image: "assets/images/lapangan4.jpg",
     description: "Mahal banget sumpah",

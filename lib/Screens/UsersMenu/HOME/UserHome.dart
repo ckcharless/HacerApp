@@ -193,7 +193,7 @@ class ProductCard extends StatelessWidget {
                                       topRight: Radius.circular(22))
                               ),
                               child: Text(
-                                "\$${detailLapangan.price}",
+                                "\Rp ${detailLapangan.price} / jam",
                                 style: Theme
                                     .of(context)
                                     .textTheme
