@@ -14,7 +14,7 @@ List<Product> products = [
     description: "Murah banget pokoknya",
     openTime: '08:00',
     closeTime: '21:00',
-    facility: 'WC | Mushola | Minimarket | Free Parkir'
+    facility: 'WC, Mushola, Minimarket, Free Parkir'
   ),
   Product(
     id: 2,
@@ -24,7 +24,7 @@ List<Product> products = [
     description: "Agak mahal",
       openTime: '08:00',
       closeTime: '21:00',
-      facility: 'WC | Mushola | Minimarket | Free Parkir'
+      facility: 'WC, Mushola, Minimarket, Free Parkir'
   ),
   Product(
     id: 3,
@@ -34,7 +34,7 @@ List<Product> products = [
     description: "Mahal cok",
       openTime: '08:00',
       closeTime: '21:00',
-      facility: 'WC | Mushola | Minimarket | Free Parkir'
+      facility: 'WC, Mushola, Minimarket, Free Parkir'
   ),
   Product(
     id: 4,
@@ -44,6 +44,6 @@ List<Product> products = [
     description: "Mahal banget sumpah",
       openTime: '08:00',
       closeTime: '21:00',
-      facility: 'WC | Mushola | Minimarket | Free Parkir'
+      facility: 'WC, Mushola, Minimarket, Free Parkir'
   ),
 ];

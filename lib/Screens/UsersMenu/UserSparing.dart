@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:hacer/Screens/UsersMenu/HOME/DetailScreen/detail_screen.dart';
 import 'package:hacer/constans.dart';
+import 'package:hacer/routing_constant.dart';
 
 class UserSparing extends StatefulWidget{
   UserSparing({Key key}) : super(key: key);
@@ -36,7 +37,7 @@ class _UserSparingState extends State<UserSparing>{
                   itemCount: 4,
                   itemBuilder: (context, index) => ProductCard(
                     itemIndex: index,
-                    press: () {},
+                    press: () {JoinSparing(context);},
                   ),
                 ),
 
@@ -192,4 +193,83 @@ class ProductCard extends StatelessWidget {
   }
 }
 
+successAlert(BuildContext context){
+  Widget continueButton = FlatButton(
+    child: Text("Ok"),
+    onPressed:  () {
+      Navigator.pushNamed(context, UserHomeView);
+    },
+  );
 
+  AlertDialog alert = AlertDialog(
+    title: Text('SUCCESS!!'),
+    content: Stack(
+        alignment: Alignment.center,
+        children: <Widget>[
+          Image.asset(
+            'assets/images/icons8-ok-480.png',
+            fit: BoxFit.cover,
+            height: 200,
+          ),
+        ]
+    ),
+    actions: [
+      continueButton,
+    ],
+  );
+
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return alert;
+    },
+  );
+}
+
+
+final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+Future JoinSparing(BuildContext context) async {
+  Widget continueButton = FlatButton(
+    child: Text("Join"),
+    onPressed:  () {
+      if(_formKey.currentState.validate()){
+        // Do something like updating SharedPreferences or User Settings etc.
+        successAlert(context);
+      }
+    },
+  );
+
+  Widget resetButton = FlatButton(
+    child: Text("Cancel"),
+    onPressed:  () {
+      _formKey.currentState.reset();
+    },
+  );
+
+  return await showDialog(context: context,
+      builder: (context){
+        final TextEditingController _fieldName = TextEditingController();
+        final TextEditingController _fieldPrice = TextEditingController();
+        final TextEditingController _fieldDescription = TextEditingController();
+        return StatefulBuilder(builder: (context,setState){
+          return AlertDialog(
+            title: Text('Sparing'),
+            content: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text('Apakah anda tertarik untuk join sparing ?')
+
+
+                  ],
+                )),
+            actions: <Widget>[
+              continueButton,
+              resetButton,
+            ],
+          );
+        });
+      });
+}
