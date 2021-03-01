@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:hacer/constans.dart';
 import 'package:hacer/models/detailLapangan.dart';
+import "commponents/DetailBooking.dart";
 
 import 'commponents/body.dart';
 
@@ -27,7 +28,7 @@ class DetailScreen extends StatelessWidget {
         elevation: 0,
         centerTitle: false,
         title: Text(
-          'Backk'.toUpperCase(),
+          'Back'.toUpperCase(),
           style: Theme.of(context).textTheme.bodyText2,
         ),
 

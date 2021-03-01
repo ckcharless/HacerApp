@@ -131,7 +131,7 @@ class ProductCard extends StatelessWidget {
                           spreadRadius: 4,
                           color: Colors.black45,
                           offset: Offset(2, 2),
-                          blurRadius: 10,
+                          blurRadius: 8,
                         )],
                       ),
                       child: Container(
@@ -193,7 +193,7 @@ class ProductCard extends StatelessWidget {
                                       topRight: Radius.circular(22))
                               ),
                               child: Text(
-                                "\$${detailLapangan.price}",
+                                "\Rp ${detailLapangan.price} / jam",
                                 style: Theme
                                     .of(context)
                                     .textTheme

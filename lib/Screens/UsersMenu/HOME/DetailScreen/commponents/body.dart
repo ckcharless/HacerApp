@@ -1,7 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hacer/Screens/WelcomeScreen/LoginScreen.dart';
 import 'package:hacer/constans.dart';
 import 'package:hacer/models/detailLapangan.dart';
+
+import 'bodyBooking/body.dart';
+import 'DetailBooking.dart';
 
 class Body extends StatelessWidget {
   final Product product;
@@ -14,7 +18,7 @@ class Body extends StatelessWidget {
       children: <Widget>[
         Container(
           padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
-          height: 380,
+          height: 460,
           decoration: BoxDecoration(
             color: kBackgroundColor,
             borderRadius: BorderRadius.only(
@@ -38,51 +42,52 @@ class Body extends StatelessWidget {
                   ],
                 ),
               ),
-              Text("CHAMPION FUTSAL",
-                style: Theme.of(context).textTheme.headline6,
+              SizedBox(height: 10,),
+              Text(product.title,
+                  style: TextStyle(height: 1.5, fontSize: 24,fontWeight: FontWeight.bold)
               ),
-              Text('HARGA : Rp 50.000 / jam'),
-              Text('WAKTU BUKA : 08:00 AM - 10:00 PM'),
-              Text('FASILITAS : WC | TEMPAT SHOLAT'),
-              FlatButton(onPressed: _launchMap, child: Text('LOCATION'),color: Colors.lightBlue,),
-
+              Text('\HARGA : Rp ${product.price} / jam',
+                  style: TextStyle(height: 1.5, fontSize: 16)),
+              Text('\WAKTU BUKA : ${product.openTime} AM - ${product.closeTime} PM',
+                  style: TextStyle(height: 1.5, fontSize: 16)),
+              Text('\FASILITAS : ${product.facility}',
+                  style: TextStyle(height: 1.5, fontSize: 16)),
+              SizedBox(height: 12,),
+              MaterialButton(
+                onPressed: (){},
+                child: Text('LOCATION', style: TextStyle(
+                    color: Colors.blue
+                )
+                ),
+                textColor: Colors.white,
+                shape: RoundedRectangleBorder(side: BorderSide(
+                    color: Colors.blue,
+                    width: 1,
+                    style: BorderStyle.solid
+                ), borderRadius: BorderRadius.circular(50)),
+              )
             ],
           ),
         ),
+SizedBox(height: 20,),
 
         Container(
-          margin: EdgeInsets.all(kDefaultPadding),
-          padding: EdgeInsets.symmetric(
-            horizontal: kDefaultPadding,
-            vertical: kDefaultPadding / 2,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.orangeAccent,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Row(
-            children: <Widget>[
-              Text('BOOKING',style: TextStyle(color: Colors.white),)
-            ],
-          ),
+          padding: EdgeInsets.symmetric(horizontal: kDefaultPadding),
+        child: RoundedButton(
+
+            text: 'BOOKING',
+
+            textColor: Colors.white,
+            color: Colors.orange,
+            press: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => DetailBooking(
+              ),
+              ),
+              );
+            },
+        ),
         ),
 
-        Container(
-          margin: EdgeInsets.all(kDefaultPadding),
-          padding: EdgeInsets.symmetric(
-            horizontal: kDefaultPadding,
-            vertical: kDefaultPadding / 2,
-          ),
-          decoration: BoxDecoration(
-            color: Colors.orangeAccent,
-            borderRadius: BorderRadius.circular(30),
-          ),
-          child: Row(
-            children: <Widget>[
-              Text('BOOKING',style: TextStyle(color: Colors.white),)
-            ],
-          ),
-        ),
       ],
     );
   }

@@ -10,6 +10,7 @@ static String routeName = '/profile';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Center(
           child:
@@ -18,6 +19,7 @@ static String routeName = '/profile';
         backgroundColor: Colors.white60,
         automaticallyImplyLeading: false,
       ),
+
       body: Body(),
 
     );
