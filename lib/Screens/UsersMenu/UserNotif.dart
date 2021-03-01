@@ -78,7 +78,7 @@ class ProductCard extends StatelessWidget {
         horizontal: kDefaultPadding,
         vertical: kDefaultPadding / 90,
       ),
-      height: 165,
+      height: 195,
 
 
       child: InkWell(

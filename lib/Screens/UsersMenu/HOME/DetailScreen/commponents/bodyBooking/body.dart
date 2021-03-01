@@ -205,10 +205,7 @@ class _BookingForm extends State<BookingForm>{
                 ),
                 color: Colors.blue,
                 onPressed: (){
-                  print(email);
-                  print(name);
-                  print(Phonenumber);
-                  print(Adress);
+                  SubmitForm(context);
                 },
               ),
             ),
@@ -256,9 +253,9 @@ successAlert(BuildContext context){
 
 final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-Future JoinSparing(BuildContext context) async {
+Future SubmitForm(BuildContext context) async {
   Widget continueButton = FlatButton(
-    child: Text("Join"),
+    child: Text("Ok"),
     onPressed:  () {
       if(_formKey.currentState.validate()){
         // Do something like updating SharedPreferences or User Settings etc.
@@ -270,7 +267,7 @@ Future JoinSparing(BuildContext context) async {
   Widget resetButton = FlatButton(
     child: Text("Cancel"),
     onPressed:  () {
-      _formKey.currentState.reset();
+      Navigator.of(context).pop();
     },
   );
 
@@ -281,13 +278,13 @@ Future JoinSparing(BuildContext context) async {
         final TextEditingController _fieldDescription = TextEditingController();
         return StatefulBuilder(builder: (context,setState){
           return AlertDialog(
-            title: Text('Sparing'),
+            title: Text('Booking'),
             content: Form(
                 key: _formKey,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('Apakah anda tertarik untuk join sparing ?')
+                    Text('Apakah anda yakin telah mengisi form dengan benar ?')
 
 
                   ],

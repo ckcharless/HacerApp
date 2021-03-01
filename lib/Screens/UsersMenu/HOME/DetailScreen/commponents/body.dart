@@ -50,7 +50,7 @@ class Body extends StatelessWidget {
                   style: TextStyle(height: 1.5, fontSize: 16)),
               Text('\WAKTU BUKA : ${product.openTime} AM - ${product.closeTime} PM',
                   style: TextStyle(height: 1.5, fontSize: 16)),
-              Text('\FASILITAS : ${product.facility}',
+              Text('\DESKRIPSI : ${product.facility}',
                   style: TextStyle(height: 1.5, fontSize: 16)),
               SizedBox(height: 12,),
               MaterialButton(

@@ -8,42 +8,42 @@ class Product{
 List<Product> products = [
   Product(
     id: 1,
-    price: 1000,
+    price: 50000,
     title: "CHAMPION FUTSAL",
     image: "assets/images/lapangan1.jpg",
     description: "Murah banget pokoknya",
     openTime: '08:00',
     closeTime: '21:00',
-    facility: 'WC | Mushola | Minimarket | Free Parkir'
+    facility: 'WC, Mushola, Minimarket, Free Parkir'
   ),
   Product(
     id: 2,
-    price: 4000,
+    price: 60000,
     title: "Champion futsal 2",
     image: "assets/images/lapangan2.jpg",
     description: "Agak mahal",
       openTime: '08:00',
       closeTime: '21:00',
-      facility: 'WC | Mushola | Minimarket | Free Parkir'
+      facility: 'WC, Mushola, Minimarket, Free Parkir'
   ),
   Product(
     id: 3,
-    price: 5000,
+    price: 70000,
     title: "Champion futsal 3",
     image: "assets/images/lapangan3.jpg",
     description: "Mahal cok",
       openTime: '08:00',
       closeTime: '21:00',
-      facility: 'WC | Mushola | Minimarket | Free Parkir'
+      facility: 'WC, Mushola, Minimarket, Free Parkir'
   ),
   Product(
     id: 4,
-    price: 8000,
+    price: 100000,
     title: "Champion futsal 4",
     image: "assets/images/lapangan4.jpg",
     description: "Mahal banget sumpah",
       openTime: '08:00',
       closeTime: '21:00',
-      facility: 'WC | Mushola | Minimarket | Free Parkir'
+      facility: 'WC, Mushola, Minimarket, Free Parkir'
   ),
 ];
